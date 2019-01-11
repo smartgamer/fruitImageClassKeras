@@ -164,3 +164,9 @@ tensorboard("fruits/fruits-360/keras/logs")
 
 # you could now save your model and/or the weights, visualize the hidden layers, run predictions on test data, etc. 
 sessionInfo()
+####
+
+
+
+### Explaining Keras image classification models with lime ###
+

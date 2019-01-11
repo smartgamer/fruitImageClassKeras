@@ -179,7 +179,8 @@ library(keras)   # for working with neural nets
 library(lime)    # for explaining models
 library(magick)  # for preprocessing images
 library(ggplot2) # for additional plotting
-library(reticulate)
+
+# library(reticulate)
 # use_python('/home/upsman/anaconda3/envs/env-python37/bin/python')
 # use_python('/opt/anaconda/anaconda3/envs/r-tensorflow/bin/python')
 # use_python("/home/upsman/anaconda3/lib/python3.7/site-packages/keras")

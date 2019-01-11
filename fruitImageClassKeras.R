@@ -170,5 +170,9 @@ sessionInfo()
 
 ### Explaining Keras image classification models with lime ###
 #https://shirinsplayground.netlify.com/2018/06/keras_fruits_lime/
+# Thomas wrote a very nice article about how to use keras and lime in R! Here, I am following this article to use Imagenet (VGG16) to make and explain predictions of fruit images and then I am extending the analysis to last week’s model and compare it with the pretrained net.
+
+
+
 
 

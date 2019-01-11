@@ -1,7 +1,9 @@
+# Image classification with keras in roughly 100 lines of code.
 
 #https://shirinsplayground.netlify.com/2018/06/keras_fruits/
 #https://www.kaggle.com/moltean/fruits/data
-
+# install.packages("keras")
+library(keras)
 # list of fruits to modle
 fruit_list <- c("Kiwi", "Banana", "Apricot", "Avocado", "Cocos", "Clementine", "Mandarine", "Orange",
                 "Limes", "Lemon", "Peach", "Plum", "Raspberry", "Strawberry", "Pineapple", "Pomegranate")
@@ -18,8 +20,8 @@ target_size <- c(img_width, img_height)
 channels <- 3
 
 # path to image folders
-train_image_files_path <- "/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/Training/"
-valid_image_files_path <- "/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/Validation/"
+train_image_files_path <- "fruits/fruits-360/Training/"
+valid_image_files_path <- "fruits/fruits-360/Test/"
 
 
 ### Loading images ###
@@ -71,7 +73,7 @@ cat("\nClass label vs index mapping:\n")
 train_image_array_gen$class_indices
 
 fruits_classes_indices <- train_image_array_gen$class_indices
-save(fruits_classes_indices, file = "/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/fruits_classes_indices.RData")
+save(fruits_classes_indices, file = "fruits_classes_indices.RData")
 
 
 
@@ -87,7 +89,7 @@ batch_size <- 32
 epochs <- 10
 
 
-The model I am using here is a very simple sequential convolutional neural net with the following hidden layers: 2 convolutional layers, one pooling layer and one dense layer.
+# The model I am using here is a very simple sequential convolutional neural net with the following hidden layers: 2 convolutional layers, one pooling layer and one dense layer.
 
 # initialise model
 model <- keras_model_sequential()
@@ -124,7 +126,7 @@ model %>% compile(
   metrics = "accuracy"
 )
 
-Fit the model; because I used image_data_generator() and flow_images_from_directory() I am now also using the fit_generator() to run the training.
+# Fit the model; because I used image_data_generator() and flow_images_from_directory() I am now also using the fit_generator() to run the training.
 
 # fit
 hist <- model %>% fit_generator(
@@ -143,9 +145,9 @@ hist <- model %>% fit_generator(
   verbose = 2,
   callbacks = list(
     # save best model after every epoch
-    callback_model_checkpoint("/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/keras/fruits_checkpoints.h5", save_best_only = TRUE),
+    callback_model_checkpoint("fruits/fruits-360/keras/fruits_checkpoints.h5", save_best_only = TRUE),
     # only needed for visualising with TensorBoard
-    callback_tensorboard(log_dir = "/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/keras/logs")
+    callback_tensorboard(log_dir = "fruits/fruits-360/keras/logs")
   )
 )
 
@@ -158,7 +160,7 @@ plot(hist)
 
 # Finally, I want to have a look at the TensorFlow graph with TensorBoard.
 
-tensorboard("/Users/shiringlander/Documents/Github/DL_AI/Tutti_Frutti/fruits-360/keras/logs")
+tensorboard("fruits/fruits-360/keras/logs")
 
 # you could now save your model and/or the weights, visualize the hidden layers, run predictions on test data, etc. 
 sessionInfo()

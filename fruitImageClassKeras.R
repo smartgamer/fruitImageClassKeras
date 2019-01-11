@@ -167,6 +167,7 @@ sessionInfo()
 ####
 
 
+###
 
 ### Explaining Keras image classification models with lime ###
 #https://shirinsplayground.netlify.com/2018/06/keras_fruits_lime/
@@ -188,16 +189,18 @@ library(reticulate)
 # install_keras(method = c("auto", "virtualenv", "conda"), conda = "auto", tensorflow = "default", extra_packages = NULL)
 
 #test
-library(keras)
-use_condaenv("r-tensorflow",required=T)
-data <- dataset_mnist()
-library(reticulate)
-py_module_available('keras') # must return TRUE
-py_module_available('tensorflow') # must return TRUE
-py_discover_config("keras") # more info on the python env, tf and keras
-py_config()
+# library(keras)
+# use_condaenv("r-tensorflow",required=T)
+# data <- dataset_mnist()
+# library(reticulate)
+# py_module_available('keras') # must return TRUE
+# py_module_available('tensorflow') # must return TRUE
+# py_discover_config("keras") # more info on the python env, tf and keras
+# py_config()
+# 
+# library(tensorflow)
 
-library(tensorflow)
+##
 # Loading the pretrained Imagenet model
 model <- application_vgg16(weights = "imagenet", include_top = TRUE)
 model

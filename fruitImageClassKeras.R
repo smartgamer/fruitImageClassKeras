@@ -178,6 +178,26 @@ library(keras)   # for working with neural nets
 library(lime)    # for explaining models
 library(magick)  # for preprocessing images
 library(ggplot2) # for additional plotting
+library(reticulate)
+# use_python('/home/upsman/anaconda3/envs/env-python37/bin/python')
+# use_python('/opt/anaconda/anaconda3/envs/r-tensorflow/bin/python')
+# use_python("/home/upsman/anaconda3/lib/python3.7/site-packages/keras")
+# py_config()
+#all above don't work:
+
+# install_keras(method = c("auto", "virtualenv", "conda"), conda = "auto", tensorflow = "default", extra_packages = NULL)
+
+#test
+library(keras)
+use_condaenv("r-tensorflow",required=T)
+data <- dataset_mnist()
+library(reticulate)
+py_module_available('keras') # must return TRUE
+py_module_available('tensorflow') # must return TRUE
+py_discover_config("keras") # more info on the python env, tf and keras
+py_config()
+
+library(tensorflow)
 # Loading the pretrained Imagenet model
 model <- application_vgg16(weights = "imagenet", include_top = TRUE)
 model
